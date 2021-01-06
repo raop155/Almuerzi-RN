@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList, Text, ActivityIndicator } from 'react-native';
 import { ListItem } from '../components';
+import useFetch from '../hooks/useFetch';
 
 const data = [
   {
@@ -16,19 +17,30 @@ const data = [
 ];
 
 const Meals = ({ navigation }) => {
+  const { loading, data: meals } = useFetch({
+    url: 'https://serverless.raop155.vercel.app/api/meals',
+  });
+
   return (
     <View style={styles.container}>
-      <FlatList
-        style={styles.list}
-        data={data}
-        keyExtractor={(x) => x._id}
-        renderItem={({ item }) => (
-          <ListItem
-            onPress={() => navigation.navigate('Modal', { _id: item._id })}
-            name={item.name}
-          />
-        )}
-      />
+      {loading ? (
+        <View>
+          <ActivityIndicator size='large' color='#00f' />
+          <Text>Loading...</Text>
+        </View>
+      ) : (
+        <FlatList
+          style={styles.list}
+          data={meals}
+          keyExtractor={(x) => x._id}
+          renderItem={({ item }) => (
+            <ListItem
+              onPress={() => navigation.navigate('Modal', { _id: item._id })}
+              name={item.name}
+            />
+          )}
+        />
+      )}
     </View>
   );
 };
@@ -43,8 +55,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   list: {
     alignSelf: 'stretch',
