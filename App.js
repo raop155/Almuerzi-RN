@@ -1,7 +1,7 @@
 import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import { LoginScreen, RegisterScreen, MealsScreen, ModalScreen } from './screens';
+import { SplashScreen, LoginScreen, RegisterScreen, MealsScreen, ModalScreen } from './screens';
 
 const OnBoardingNavigator = createStackNavigator(
   {
@@ -38,11 +38,12 @@ const RootNavigator = createStackNavigator(
 
 const SwitchNavigator = createSwitchNavigator(
   {
+    Splash: SplashScreen,
     OnBoarding: OnBoardingNavigator,
     Root: RootNavigator,
   },
   {
-    initialRouteName: 'OnBoarding',
+    initialRouteName: 'Splash',
   },
 );
 
