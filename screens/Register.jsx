@@ -4,7 +4,7 @@ import { Text, View, StyleSheet } from 'react-native';
 const Register = () => {
   return (
     <View style={styles.container}>
-      <Text>Login Screen</Text>
+      <Text>Register Screen</Text>
     </View>
   );
 };
