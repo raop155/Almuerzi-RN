@@ -50,6 +50,7 @@ const Register = ({ navigation }) => {
         onChangeText={subscribe('password')}
         value={inputs.password}
         placeholder='Password'
+        secureTextEntry={true}
         autoCapitalize='none'
       />
       <TouchableOpacity style={styles.button} activeOpacity={0.5} onPress={handleSubmit}>
