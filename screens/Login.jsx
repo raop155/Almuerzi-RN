@@ -1,38 +1,18 @@
 import React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-import useForm from '../hooks/useForm';
 
 const Login = ({ navigation }) => {
-  const initialState = {
-    email: '',
-    password: '',
-  };
-  const onSubmit = (values) => {
-    console.log(values);
-  };
-
-  const { subscribe, inputs, handleSubmit } = useForm(initialState, onSubmit);
-
   const goRegisterScreen = () => {
     navigation.navigate('Register');
   };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={subscribe('email')}
-        value={inputs.email}
-        placeholder='Email'
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={subscribe('password')}
-        value={inputs.password}
-        placeholder='Password'
-      />
-      <TouchableOpacity style={styles.button} activeOpacity={0.5} onPress={handleSubmit}>
+      <TextInput style={styles.input} placeholder='Email' autoCapitalize='none' />
+      <TextInput style={styles.input} placeholder='Password' autoCapitalize='none' />
+      <TouchableOpacity style={styles.button} activeOpacity={0.5} onPress={() => {}}>
         <Text style={styles.buttonText}>Log in</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} activeOpacity={0.5} onPress={goRegisterScreen}>
