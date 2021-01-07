@@ -9,8 +9,8 @@ const Login = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
-      <TextInput style={styles.input} />
-      <TextInput style={styles.input} />
+      <TextInput style={styles.input} placeholder='Email' />
+      <TextInput style={styles.input} placeholder='Password' />
       <TouchableOpacity style={styles.button} activeOpacity={0.5} onPress={() => {}}>
         <Text style={styles.buttonText}>Log in</Text>
       </TouchableOpacity>

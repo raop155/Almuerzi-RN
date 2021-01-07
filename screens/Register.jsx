@@ -10,8 +10,8 @@ const Register = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Register</Text>
-      <TextInput style={styles.input} />
-      <TextInput style={styles.input} />
+      <TextInput style={styles.input} placeholder='Email' />
+      <TextInput style={styles.input} placeholder='Password' />
       <TouchableOpacity style={styles.button} activeOpacity={0.5} onPress={() => {}}>
         <Text style={styles.buttonText}>Accept</Text>
       </TouchableOpacity>
