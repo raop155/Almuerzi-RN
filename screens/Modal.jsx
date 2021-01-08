@@ -1,5 +1,6 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, Button } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, Button, Alert } from 'react-native';
 import useFetch from '../hooks/useFetch';
 
 const Modal = ({ navigation }) => {
@@ -8,20 +9,28 @@ const Modal = ({ navigation }) => {
     url: `https://serverless.raop155.vercel.app/api/meals/${_id}`,
   });
 
-  const createOrder = () => {
-    fetch(`https://serverless.raop155.vercel.app/api/orders`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        mealId: _id,
-        userId: '47369425',
-      }),
-    }).then(() => {
-      alert('The order was created successfully!');
-      navigation.goBack();
-    });
+  const createOrder = async () => {
+    const token = await AsyncStorage.getItem('token');
+    if (token) {
+      fetch(`https://serverless.raop155.vercel.app/api/orders`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: token,
+        },
+        body: JSON.stringify({
+          mealId: _id,
+        }),
+      }).then((x) => {
+        if (x.status !== 201) {
+          return alert('The order could not be created');
+        }
+        alert('The order was created successfully!');
+        navigation.goBack();
+      });
+    } else {
+      alert('The order could not be created');
+    }
   };
 
   return (

@@ -3,19 +3,6 @@ import { View, StyleSheet, FlatList, Text, ActivityIndicator } from 'react-nativ
 import { ListItem } from '../components';
 import useFetch from '../hooks/useFetch';
 
-const data = [
-  {
-    _id: '1',
-    name: 'Ceviche',
-    description: 'Pescado, limón, ají',
-  },
-  {
-    _id: '2',
-    name: 'Ceviche2',
-    description: 'Pescado2, limón2, ají2',
-  },
-];
-
 const Meals = ({ navigation }) => {
   const { loading, data: meals } = useFetch({
     url: 'https://serverless.raop155.vercel.app/api/meals',
